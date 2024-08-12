@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>执行BAT文件</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>执行BAT文件</h1>
+    <button onclick="executeBat()">执行BAT</button>
+    <div id="result"></div>
+</div>
+
+<script>
+    function executeBat() {
+        fetch('/api/execute-bat', {
+            method: 'POST'
+        })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').innerText = '执行结果: ' + data;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                document.getElementById('result').innerText = '执行出错: ' + error;
+            });
+    }
+</script>
+</body>
+</html>
