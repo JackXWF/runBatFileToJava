@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.example.demo.enums.GenderEnum;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -28,7 +29,13 @@ public class User implements Serializable {
     /**
      *
      */
-    private Boolean gender;
+    private GenderEnum gender;
+
+    @TableField("isMarried")
+    private Boolean isMarried;
+
+
+    private Boolean deleted;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
